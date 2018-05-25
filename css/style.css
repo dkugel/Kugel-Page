@@ -303,9 +303,6 @@ header {
     display: block;
     position: relative;
     z-index: 800;
-    padding-top: 28px;
-    border-bottom: 1px solid #414141;
-	
 }
 
 header h1 {
