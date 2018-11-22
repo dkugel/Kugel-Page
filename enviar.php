@@ -83,31 +83,43 @@
         
       <div class="grid_6">
         <div class="text1 tx__1"></div>
-        
-         <?php
-        
-$name = isset($_POST['name'])? $_POST['name'] : NULL;
-$email = isset($_POST['email'])? $_POST['email'] : NULL;
-$phone = isset($_POST['phone'])? $_POST['phone'] : NULL;
-$message = isset($_POST['message'])? $_POST['message'] : NULL;
+		<?php    
+			session_start();     
+			$name = isset($_POST['name'])? $_POST['name'] : NULL;
+			$email = isset($_POST['email'])? $_POST['email'] : NULL;
+			$phone = isset($_POST['phone'])? $_POST['phone'] : NULL;
+			$message = isset($_POST['message'])? $_POST['message'] : NULL;
 
-
-$para = 'info@kugelelectronics.com';
-$titulo = 'Nuevo contacto';
-$header = 'From: ' . $email;
-$msjCorreo = "Nombre: $name\n E-Mail: $email\n  Telefono: $phone\n   Mensaje:\n $message";
-  
-if (isset($_POST['submit'])) {
-if (mail($para, $titulo, $msjCorreo, $header)) {
-echo "<script language='javascript'>
-alert('Mensaje enviado, muchas gracias.');
-window.location.href = 'https://www.kugelelectronics.com.co';
-</script>";
-} else {
-echo 'Falló el envio';
-}
-}
-        ?>			
+			$para = 'info@kugelelectronics.com';
+			$titulo = 'Nuevo contacto Web';
+			$header = 'De: ' . $email;    
+			$cuerpo  = "Nombre: $name\n";
+			$cuerpo .= "E-Mail: $email\n";
+			$cuerpo .= "telefono: $phone\n";      
+			$cuerpo .= "Mensaje: $message\n";
+			
+			if($_POST['codigo'] == $_SESSION['captcha']){
+				if (isset($_POST['submit'])) {
+					if (mail($para, $titulo, $cuerpo, $header)) {
+						echo "<script language='javascript'>
+						alert('Mensaje enviado, muchas gracias.');
+						window.location.href = 'https://www.kugelelectronics.com.co';
+						</script>";
+						}
+					else {
+						echo 'Falló el envio';
+					}
+				}
+			}else{
+				echo "<script language='javascript'>
+						alert('Código erroneo, intente nuevamente.');
+						window.location.href = 'https://www.kugelelectronics.com.co/contacto.html';
+						</script>";
+			}
+				
+			   
+		?>
+				
         
        </div> 
           
