@@ -92,7 +92,7 @@
 
 			$para = 'info@kugelelectronics.com';
 			$titulo = 'Nuevo contacto Web';
-			$header = 'De: ' . $email;    
+			$header = 'From: ' . $email;    
 			$cuerpo  = "Nombre: $name\n";
 			$cuerpo .= "E-Mail: $email\n";
 			$cuerpo .= "telefono: $phone\n";      
